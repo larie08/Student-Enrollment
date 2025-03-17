@@ -1,0 +1,142 @@
+<div>
+  <div id="openNav">
+      <div>
+	<div style="background-color: #848C54; padding: 5px; border-radius: 5px; ">
+	  <button class="w3-button  w3-round-large" style=" color: white;" ng-click="Sidebar()">☰</button>
+	  <a class="w3-button w3-round-large w3-right" style="color: white; background-color: #9FB164;" ng-click="logout()">LOGOUT</a>
+	</div>
+	<div class="w3-sidebar w3-bar-block w3-border-right w3-animate-left" style="display:none; background-color: #DCE5BE; border: 1px solid #ccc; border-radius: 5px;"
+	  id="enrollmentSidebar">
+	  <br>
+	  <span style="margin-left: 10px; font-size: 22px; user-select: none; color: #848C54;"><b>ENROLLMENT</b></span><br><br>
+	  <a ng-click="student()" style="font-size: 18px; color: #848C54;" class="w3-bar-item w3-button">Student</a>
+	  <a ng-click="subject()" style="font-size: 18px; color: #848C54;" class="w3-bar-item w3-button">Subject</a>
+	  <a ng-click="enroll()" style="font-size: 18px; background-color: #9FB164; color: #ffffff;" class="w3-bar-item w3-button">Enrollment</a>
+	  <a ng-click="report()" style="font-size: 18px; color: #848C54;" class="w3-bar-item w3-button">Report</a>
+	</div>
+  </div>
+  
+<div class="w3-sidebar w3-bar-block w3-border-right w3-animate-left" style="display:none; background-color: rgb(211, 233, 245); border: 1px solid #ccc; border-radius: 5px;"
+	id="enrollmentSidebar">
+	<br>
+	<a ng-click="student()" style=" font-size: 18px; background-color: #65e3e1;" class="w3-bar-item w3-button">Student</a>
+	<a ng-click="subject()" style="font-size: 18px;" class="w3-bar-item w3-button">Subject</a>
+	<a ng-click="enroll()" style="font-size: 18px;" class="w3-bar-item w3-button">Enrollment</a>
+	<a ng-click="report()" style="font-size: 18px;" class="w3-bar-item w3-button">Report</a>
+</div>
+</div>
+
+</div>
+
+<div id="pageview"> 
+ <span>
+      <button class="w3-button w3-round-xlarge w3-right" style="margin-right: 240px; margin-top: 1%; font-size: 19px; background-color: rgba(179, 216, 105, 0.8); color: black;" ng-click="tempdeleteEDP()">DELETE</button> <!-- OP. 8 -->
+      <button class="w3-button w3-round-xlarge w3-right" 
+      style="margin-right: 20px; margin-top: 1%; font-size: 19px; background-color: rgba(233, 248, 203, 0.8); color: black;" ng-click="deleteSched()">SAVE</button> <!-- OP. 9 -->
+    
+    </span>
+    <p style="font-size: 18px; padding-left:1%; margin-left:5%" class="w3-left">
+        <input type="text" ng-model="searchidno" class="w3-margin-left" placeholder="ID No." 
+        style="width:50%; height: 38px; border: none; border-bottom: 1px solid black; 
+         background-color: transparent;  padding-right:1px;" class=" madimi-one-regular"><span></span>
+        <button ng-click="search(); enrolledsubject()" class="w3-button w3-round-medium w3-right" style="background-color: rgba(233, 248, 203, 0.8); color: black; font-size: 18px;">GO</button>
+    </p><br><br><br><br>
+	
+  <div ng-if="studentinfo.length > 0">
+    <center>
+    <div ng-repeat="student in studentinfo" style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden; position: relative;">
+      <div style="width: 100%; height: 100%; background-image: url('/resources/profile/{{student.lastname}}.jpg');
+                  background-size: cover;
+                  background-position: center;
+                  border-radius: 50%;
+                  overflow: hidden;"></div>
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid #fff; border-radius: 50%;"></div>
+    </div></center><br>
+    <div class="w3-center w3-round-small w3-container w3-modal-content w3-card-2" 
+       style="border: 1px solid #000; height: auto; width: 300px; padding: 3px; margin: 0 auto;">
+         <p ng-repeat="student in studentinfo"><b>{{student.idno}}</b></p>
+      <p ng-repeat="student in studentinfo" style="font-size: 23px" class="w3-center unselect"><b>
+        &ensp;{{ student.lastname | uppercase}},&nbsp;{{ student.firstname | uppercase }} &ensp;{{ student.course | uppercase}}&ensp;{{ student.level}}
+        </b>
+      </p>
+  </div><br>
+</div>
+    <p style="font-size: 18px; padding-left:1%; margin-left:5%" class="w3-left">
+      <input type="text" ng-model="searchfoundidedp" class="w3-margin-left" placeholder="EDP Code" 
+      style="width:45%; height: 38px; border: none; border-bottom: 1px solid black; 
+      background-color: transparent;  padding-right:1%;" class=" madimi-one-regular"><span></span>
+      <button ng-click="edpfind();" class="w3-button w3-round-medium w3-right" style="background-color: rgba(179, 216, 105, 0.8); color: black; font-size: 18px">SEARCH</button>
+    </p>
+	<br><br>
+	<br>
+  
+    
+
+<center>
+<div class="w3-container" ng-show="subjectstudentenrolled.length === 0">
+  <table class=" w3-animate-top w3-card-4 w3-round-large enrolltable">	
+  <thead>	
+    <tr>
+      <th colspan="6" style="font-size: 25px;" class="stuth"><center>STUDENT ENROLLED</center></th>
+      <p></p>
+    </tr>
+    <tr>
+      <th colspan="6" style="font-size: 19px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+                  color: solid black;" class="stuth"><center>NO ENROLLED STUDENT FOR NOW.</center></th><br>
+    </tr>
+  </thead>
+  </table>
+</div>
+
+<div ng-show="subjectstudentenrolled.length > 0"> 
+  <br><br><br>
+  <p style="font-size: 20px;" class="w3-center"><b>PAGES</b>
+    <select ng-model="pageSize" ng-options="size for size in pagesizes" style="width: 65px; height: 38px; background-color: transparent;" class="w3-round-xxlarge madimi-one-regular w3-center"required >
+        <option value="" disabled selected> Select</option>
+    </select>
+    
+  </p>
+
+  <div style="overflow-y: auto; max-height: 312px;">
+      <table class=" w3-card-4 w3-round-large enrolltable">
+        <thead class="stuth">
+          <tr>
+            <th colspan="6" style="font-size: 25px;"><center>STUDENT ENROLLED CLASS SCHEDULE</center></th>
+          </tr>
+          <tr>
+              <th style="border-bottom:5px solid rgb(249, 126, 4);" ng-click="sortBy('edpcode')">EDP CODE<span ng-show="sortType === 'edpcode' && !sortReverse">&#9650;</span><span ng-show="sortType === 'edpcode' && sortReverse">&#9660;</span></th>
+              <th style="border-bottom:5px solid rgb(249, 126, 4);" ng-click="sortBy('subjectcode')">SUBJECT CODE<span ng-show="sortType === 'subjectcode' && !sortReverse">&#9650;</span><span ng-show="sortType === 'subjectcode' && sortReverse">&#9660;</span></th>
+              <th style="border-bottom:5px solid rgb(249, 126, 4);" ng-click="sortBy('time')">TIME<span ng-show="sortType === 'time' && !sortReverse">&#9650;</span><span ng-show="sortType === 'time' && sortReverse">&#9660;</span></th>
+              <th style="border-bottom:5px solid rgb(249, 126, 4);" ng-click="sortBy('days')">DAY<span ng-show="sortType === 'days' && !sortReverse">&#9650;</span><span ng-show="sortType === 'days' && sortReverse">&#9660;</span></th>
+              <th style="border-bottom:5px solid rgb(249, 126, 4);" ng-click="sortBy('room')">ROOM<span ng-show="sortType === 'room' && !sortReverse">&#9650;</span><span ng-show="sortType === 'room' && sortReverse">&#9660;</span></th>
+              <th style="border-bottom:5px solid rgb(249, 126, 4);">SELECT</th>
+            </tr>
+      </thead>
+      <tbody>
+          <tr ng-repeat="subject in subjectstudentenrolled | orderBy:sortType:sortReverse | startFrom: currentPage * pageSize | limitTo: pageSize">
+              <td>{{ subject.edpcode }}</td>
+              <td>{{ subject.subjectcode | uppercase }}</td>
+              <td>{{ subject.time | uppercase }}</td>
+              <td>{{ subject.days | uppercase }}</td>
+              <td>{{ subject.room | uppercase }}</td>
+              <td><input type="checkbox" ng-model="subject.selected" style="width: 20px; height: 20px"></td>
+          </tr>
+      </tbody>
+</table>
+</div>
+
+<p></p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+          <button ng-disabled="currentPage==0" ng-click="currentPage = currentPage-1"
+              class="w3-button w3-round-xxlarge madimi-one-regular" style="background-color:rgba(233, 248, 203, 0.8); color: black; font-size:18px; margin: 0 5px;" type="submit" class="w3-button w3-medium"><- PREVIOUS</button>
+              &nbsp;
+          <button class="w3-button w3-round-medium madimi-one-regular" style=" font-size:18px; margin: 0 5px;" ng-repeat="page in getSheet() track by $index"
+              ng-click="goTosheet($index)"
+              ng-class="{ 'w3-button w3-green w3-round-xxlarge madimi-one-regular': currentPage == $index, 'w3-button w3-round-xxlarge madimi-one-regular': currentPage != $index }">
+              {{ $index + 1 }}
+          </button>
+              <button ng-disabled="currentPage >= subjectstudentenrolled.length / pageSize - 1" ng-click="currentPage = currentPage + 1" class="w3-button w3-medium madimi-one-regular" style="background-color: rgba(179, 216, 105, 0.8); color: black; font-size:18px; margin: 0 5px" type="submit">NEXT -></button> 
+      </div>
+</div>
+</center>
+</div>

@@ -1,0 +1,73 @@
+  <style>
+  /* Styling for the form container */
+  form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(195, 215, 156, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Styling for the login header */
+  h3 {
+    text-align: center;
+    color: #333;
+  }
+
+  /* Styling for labels */
+  label {
+    font-weight: bold;
+	color:black;
+  }
+
+  /* Styling for input fields */
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  /* Styling for the login buttons */
+  .loginbutton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(179, 216, 105, 0.8); color: black;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .loginbutton:hover {
+    background-color: #0056b3;
+  }
+
+  </style>
+  <br>
+        <form>
+        <b>
+        <h3>LOGIN </h3>
+        </b>
+        <p>
+          <label for="email">EMAIL:</label>
+          <input type="text" ng-model="email" placeholder="Enter Email" id="Email">
+        </p>
+        
+        <p>
+          <label for="password">PASSWORD:</label>
+          <input type="{{inputType}}" ng-model="password" id="password" placeholder="Enter password">
+
+      </p>
+
+      <div>
+          <button class="loginbutton w3-button" ng-click="login();">LOGIN</button>
+      </div>
+    </form>
+  </div>

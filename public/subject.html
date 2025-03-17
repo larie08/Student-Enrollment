@@ -1,0 +1,253 @@
+<div>
+  <div id="openNav">
+	<div style="background-color: #848C54; padding: 5px; border-radius: 5px; ">
+	  <button class="w3-button  w3-round-large" style=" color: white;" ng-click="Sidebar()">☰</button>
+	  <span style="margin-left: 10px; font-size: 20px; text-align: center; user-select: none; color: #DCE5BE;">SUBJECT</span>
+	  <a class="w3-button w3-round-large w3-right" style="color: white; background-color: #9FB164;" ng-click="logout()">LOGOUT</a>
+	</div>
+	<div class="w3-sidebar w3-bar-block w3-border-right w3-animate-left" style="display:none; background-color: #DCE5BE; border: 1px solid #ccc; border-radius: 5px;"
+	  id="enrollmentSidebar">
+	  <br>
+	  <span style="margin-left: 10px; font-size: 22px; user-select: none; color: #848C54;"><b>STUDENT</b></span><br><br>
+	  <a ng-click="student()" style="font-size: 18px; " class="w3-bar-item w3-button">Student</a>
+	  <a ng-click="subject()" style="font-size: 18px; background-color: #9FB164; color: white; color: #848C54;" class="w3-bar-item w3-button">Subject</a>
+	  <a ng-click="enroll()" style="font-size: 18px; color: #848C54;" class="w3-bar-item w3-button">Enrollment</a>
+	  <a ng-click="report()" style="font-size: 18px; color: #848C54;" class="w3-bar-item w3-button">Report</a>
+	</div>
+  </div>
+  
+<div class="w3-sidebar w3-bar-block w3-border-right w3-animate-left" style="display:none; background-color: rgb(211, 233, 245); border: 1px solid #ccc; border-radius: 5px;"
+	id="enrollmentSidebar">
+	<br>
+	<span style="margin-left: 10px; font-size: 22px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+				 user-select: none;"><b>STUDENT</b></span><br><br>
+	<a ng-click="student()" style=" font-size: 18px; background-color: #65e3e1;" class="w3-bar-item w3-button">Student</a>
+	<a ng-click="subject()" style="font-size: 18px;" class="w3-bar-item w3-button">Subject</a>
+	<a ng-click="enroll()" style="font-size: 18px;" class="w3-bar-item w3-button">Enrollment</a>
+	<a ng-click="report()" style="font-size: 18px;" class="w3-bar-item w3-button">Report</a>
+</div>
+</div>
+
+
+  <div id="pageview">
+    <div class="w3-half">
+    <div class="w3-container w3-mobile w3-tablet"
+    style="font-size: 18px; width:80%; height:200%; padding: 3%; margin-left:10%; margin-top: 5%; background-color: rgba(179, 216, 105, 0.8); color: black;">
+    <p>
+        <label><b>EDP CODE</b></label>
+        <input type="text" class="linetext__field w3-border-black" placeholder="EDP Code"
+            ng-model="edpcode">
+    </p>
+    <p style="font-size: 1%;">&nbsp;</p>
+    <p>
+        <label><b>SUBJECT CODE</b></label>
+        <input type="text" class="linetext__field w3-border-black" placeholder="Subject Code"
+            ng-model="subjectcode">
+    </p>
+    <p style="font-size: 1%;">&nbsp;</p>
+    <p>
+        <label><b>TIME</b></label>
+        <input type="text" class="linetext__field w3-border-black" placeholder="Time"
+            ng-model="time">
+    </p>
+    <p style="font-size: 1%;">&nbsp;</p>
+    <p>
+      <label><b>DAYS</b></label><br>
+      <h3 class="unselect">M&emsp;T&emsp;&nbsp;W&nbsp;&nbsp;&nbsp;TH&emsp;F&emsp;&nbsp;S</h3>
+      <input style="width: 20px; height: 20px; " type="checkbox" id="monday" ng-model="days.monday"><label for="monday">&emsp;</label>
+      <input style="width: 20px; height: 20px" type="checkbox" id="tuesday" ng-model="days.tuesday"><label for="tuesday">&emsp;</label>
+      <input style="width: 20px; height: 20px" type="checkbox" id="wednesday" ng-model="days.wednesday"><label for="wednesday">&emsp;</label>
+      <input style="width: 20px; height: 20px" type="checkbox" id="thursday" ng-model="days.thursday"><label for="thursday">&emsp;</label>
+      <input style="width: 20px; height: 20px" type="checkbox" id="friday" ng-model="days.friday"><label for="friday">&emsp;</label>
+      <input style="width: 20px; height: 20px" type="checkbox" id="saturday" ng-model="days.saturday"><label for="saturday">&emsp;</label>
+  </p>
+    <p style="font-size: 1%;">&nbsp;</p>
+    <p>
+        <label><b>ROOM NO.</b></label>
+        <input type="text" class="linetext__field w3-border-black" placeholder="Room Number"
+            ng-model="room">
+    </p>
+    <div class="w3-center">
+        <button ng-click="addSubject();" class="w3-center w3-button w3-round-xxlarge"
+           style="background-color: rgba(233, 248, 203, 0.8); color: black;">CONFIRM</button>
+        <button ng-click="canceladdSubject()" class="w3-center w3-button w3-round-xxlarge"
+            style="background-color: rgba(179, 216, 105, 0.8);; color: black">CANCEL</button>
+    </div>
+</div>
+    
+        <div id="AddSubjSucce" class="w3-modal w3-center">
+          <div class="modal-content w3-round-xlarge w3-animate-zoom" style="background-color: white; width: 40%; ">
+            <div class="container">
+            <center>
+            <h1 style="color: black; font-size: 30px;" class="w3-center"><b>SUCCESSFULLY ADDED NEW SUBJECT SCHEDULE.</b></h1></center>
+            <button ng-click="closeaddsubjsuccessmod()" class="w3-center w3-button w3-round-xxlarge"
+                style="background-color: #9FB164; font-size: 22px;">&nbsp;OK&nbsp;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="w3-half">
+            <div ng-show="subjectlist.length === 0">
+              <center>
+              <table class=" w3-animate-top w3-card-4 w3-round-large stutable w3-round-xlarge">	
+              <thead>	
+                <tr>
+                  <th colspan="6" style="font-size: 25px;" class="stuth"><center>STUDENT ENROLLED SUBJECTS</center></th>
+                  <p></p>
+                </tr>
+                <tr>
+                  <th colspan="6" style="font-size: 19px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+                              color: grey; text-shadow: 0 0 0 #000;" class="stuth"><center>NO CLASS SUBJECT ENROLLED OF STUDENT YET.</center></th><br>
+                </tr>
+              </thead>
+              </table>
+              </center>
+            </div>
+            
+	<div id="pageview">
+    <div class="w3-half">
+    <div class="w3-container w3-mobile w3-tablet ">
+    <style="font-size: 18px; width:80%; height:200%; padding: 3%; margin-left:10%; margin-top: 5%; background-color: rgb(211, 233, 245);">
+    <p>
+            <div ng-show="subjectlist.length > 0">
+              <p style="font-size: 18px;"><b>PAGES</b>
+                      <select ng-model="pageSize" ng-options="size for size in pagesizes" style="width: 65px; height: 38px; background-color: white;" class="w3-round-xlarge madimi-one-regular w3-center"required >
+                          <option value="" disabled selected> Select</option>
+                      </select>
+                      <span><input class="w3-round-xlarge w3-right w3-margin-right" style="height:38px; position:relative; left: 3%; padding:1%;" accesskey="s" type="text" name="search" placeholder="Search subject..." ng-model="search"></span>
+              </p>
+              <table class="table">
+                <thead class="stuth">
+                  <tr>
+                    <th colspan="6" style="font-size: 25px;"><center>STUDENT ENROLLED SUBJECTS</center></th>
+                  </tr>
+                  <tr>
+                    <th style="border-bottom: 5px solid rgba(195, 215, 156, 0.8);" ng-click="sortBy('edpcode')">EDP#<span ng-show="sortType === 'edpcode' && !sortReverse">&#9650;</span><span ng-show="sortType === 'edpcode' && sortReverse">&#9660;</span></th>
+                    <th style="border-bottom: 5px solid rgba(195, 215, 156, 0.8);" ng-click="sortBy('subjectcode')">SUBJECT CODE<span ng-show="sortType === 'subjectcode' && !sortReverse">&#9650;</span><span ng-show="sortType === 'subjectcode' && sortReverse">&#9660;</span></th>
+                    <th style="border-bottom: 5px solid rgba(195, 215, 156, 0.8);" ng-click="sortBy('time + days')">TIME-DAY<span ng-show="sortType === 'time + days' && !sortReverse">&#9650;</span><span ng-show="sortType === 'time + days' && sortReverse">&#9660;</span></th>
+                    <th style="border-bottom: 5px solid rgba(195, 215, 156, 0.8);" ng-click="sortBy('room')">ROOM<span ng-show="sortType === 'room' && !sortReverse">&#9650;</span><span ng-show="sortType === 'room' && sortReverse">&#9660;</span></th>
+                    <th style="border-bottom: 5px solid rgba(195, 215, 156, 0.8);">ACTION</th>
+                  </tr>
+                </thead>
+              
+                <tbody>
+                  <tr ng-repeat="subject in subjectlist | filter:search | orderBy:sortType:sortReverse | startFrom: currentPage * pageSize | limitTo: pageSize">
+                    <td>{{ subject.edpcode }}</td>
+                    <td>{{ subject.subjectcode | uppercase }}</td>
+                    <td>{{ subject.time | uppercase }} {{ subject.days | uppercase }}</td>
+                    <td>{{ subject.room }}</td>
+                    <td>
+                      <button class="w3-button w3-round-xlarge" style="background-color: rgba(195, 215, 156, 0.8); size-adjust: 30px; " ng-click="editSched(subject)">&#9998;</button>
+                      <button class="w3-button w3-round-xlarge " ng-click="Popdelask(subject)" style="background-color: rgba(179, 216, 105, 0.8);">&times;</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+
+              <p></p>
+              <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                <button ng-disabled="currentPage==0" ng-click="currentPage = 0"
+           
+                <button ng-disabled="currentPage==0" ng-click="currentPage = currentPage-1"
+                class="w3-button w3-round-xxlarge madimi-one-regular" style="color: black; font-size:18px" type="submit" style="margin: 0 5px;" class="w3-button w3-round-large">PREVIOUS</button>
+                &nbsp;
+                <button class="w3-button w3-round-xxlarge madimi-one-regular" style="background-color:rgb(0, 255, 191); font-size:18px; margin: 0 5px;" ng-repeat="page in getSheet() track by $index"
+                      ng-click="goTosheet($index)"
+                      ng-class="{ 'w3-button w3-green w3-round-xxlarge madimi-one-regular': currentPage == $index, 'w3-button w3-round-xxlarge madimi-one-regular': currentPage != $index }">
+                    {{ $index + 1 }}
+                  </button>
+                  <button ng-disabled="currentPage >= subjectlist.length / pageSize - 1" ng-click="currentPage = currentPage + 1" class="w3-button w3-round-xxlarge madimi-one-regular" style="color: black; font-size:18px" type="submit" style="margin: 0 5px;">NEXT</button>
+                  &nbsp;
+     
+                </div>
+              </div>
+          </div>
+        
+          <div class="w3-modal" id="editSubject">
+              <div class="w3-container w3-white">
+                <form name="editSubjectForm" ng-submit="saveSubject()" novalidate>
+                  <p>
+                    <label><b>EDP CODE:</b></label>
+					<input type="text" ng-model="editSubject.edpcode" class="w3-border-black linetext__field" required>
+                  </p>												
+                  <p>
+                    <label><b>SUBJECT CODE</b></label>
+                    <input type="text" ng-model="editSubject.subjectcode" class="w3-border-black linetext__field" required>
+                  </p><p style="font-size: 1%;">&nbsp;</p>
+                  <p>
+                    <label><b>TIME</b></label>
+                    <input type="text" ng-model="editSubject.time" class="w3-border-black linetext__field" required>
+                  </p><p style="font-size: 1%;">&nbsp;</p>
+                  <p>
+                    <label><b>DAYS</b></label><br>
+                    <h3 class="unselect">M&emsp;&nbsp;T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W&nbsp;&nbsp;&nbsp;&nbsp;
+                                         TH&emsp;&nbsp;&nbsp;F&emsp;&nbsp;&nbsp;S</h3>
+                    <input class="unselect" style="width: 25px; height: 25px; " type="checkbox" id="monday" ng-model="edit.days.monday"><label for="edmonday">&emsp;</label>
+                    <input class="unselect" style="width: 25px; height: 25px" type="checkbox" id="tuesday" ng-model="edit.days.tuesday"><label for="edtuesday">&emsp;&nbsp;</label>
+                    <input class="unselect" style="width: 25px; height: 25px" type="checkbox" id="wednesday" ng-model="edit.days.wednesday"><label for="edwednesday">&emsp;&nbsp;</label>
+                    <input class="unselect" style="width: 25px; height: 25px" type="checkbox" id="thursday" ng-model="edit.days.thursday"><label for="edthursday">&emsp;&ensp;</label>
+                    <input class="unselect" style="width: 25px; height: 25px" type="checkbox" id="friday" ng-model="edit.days.friday"><label for="edfriday">&emsp;</label>
+                    <input class="unselect" style="width: 25px; height: 25px" type="checkbox" id="saturday" ng-model="edit.days.saturday"><label for="edsaturday">&emsp;</label>
+                </p><p style="font-size: 1%;">&nbsp;</p>
+                  <p>
+                    <label><b>ROOM NO.</b></label>
+                    <input type="text" ng-model="editSubject.room" class="w3-border-black linetext__field" required>
+                  </p><br>
+                  <p>
+                    <button type="submit" class=" w3-padding w3-button w3-round-xlarge w3-right" style="background-color: rgba(233, 248, 203, 0.8); color: black;">UPDATE</button>
+                  </p>
+                </form><br><br>
+              </div>
+            </div>
+          </div>
+     
+  </div>
+          <div id="PermissionEdit" class="w3-modal w3-center">
+            <div class="modal-content w3-round-xlarge w3-animate-zoom" style="background-color: white; width: 35%;">
+              <div class="container">
+              <center><h4 style="font-size: 27px; color: black;">Are you sure you want to Edit this subject?</h4></center>
+              <button ng-click="confirmEditSubject()" class="w3-center w3-button w3-round-medium"
+                      style="background-color: rgba(233, 248, 203, 0.8); color: black;">Confirm</button>
+              <button ng-click="ClosePermissionEdit()" class="w3-center w3-button w3-round-medium" 
+                  style="background-color: rgba(179, 216, 105, 0.8); color: black;">Cancel</button>
+                </div>
+            </div>
+          </div>
+    
+          <div id="EditInfoSucce" class="w3-modal w3-center">
+            <div class="modal-content w3-round-xlarge w3-animate-zoom" style="background-color: white; width: 40%;">
+              <div class="container">
+              <center>
+              <h1 style="background-color: white; color: black; font-family: 6px; font-size: 30px;" class="w3-center"><b>THE SUBJECT SCHEDULE SUCCESSFULLY EDITED.</b></h1></center>
+              <button ng-click="closeeditsucce()" class="w3-center w3-button w3-round-medium"
+                  style="background-color: rgba(233, 248, 203, 0.8); color: black; font-size: 23px;">OK</button>
+              </div>
+            </div>
+          </div>
+          
+       <!-- Modal structure -->
+		<div id="PermissionDel" class="w3-modal">
+			<div class="w3-modal-content">
+			<div class="w3-container" style="height:auto;">
+				<center>
+				<p>Are you sure you want to delete the Subject EDP no. {{ SubjectDel.edpcode }}</p>
+				</center>
+				<button ng-click="deleteSubject()" class="w3-button w3-block w3-white w3-round-xxlarge w3-margin-bottom" style="font-size: 19px;">Confirm</button>
+				<button ng-click="expldelask()" class="w3-button w3-block w3-white w3-round-xxlarge" style="font-size: 19px;">Cancel</button>
+			</div>
+			</div>
+		</div>
+		
+		<!-- Button to open the modal -->
+		<div id="DelSuccess" class="w3-modal w3-center">
+			<div class="modal-content w3-round-xlarge">
+				<div class="container">
+					<center>
+					<h1 style="color: black; font-size: 30px;" class="w3-center"><b>Deleted Sucessfully.</b></h1></center>
+					<button ng-click="CloseDelSucce()" style="color: #000;" class="w3-center w3-button w3-round-xxlarge">X</button>
+				</div>
+			</div>
+		</div>
+

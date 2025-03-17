@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<link rel="stylesheet" href="public\resources\css-pic">
+		<style>
+			#my_camera{
+				width:320px;
+				height:240px;
+				border:1px solid #c0c0c0;
+				margin:auto;
+			}
+			#my_result{
+				width:320px;
+				height:240px;
+				border:1px solid #c0c0c0;
+				margin:auto;
+			}
+	</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js" integrity="sha512-dQIiHSl2hr3NWKKLycPndtpbh5iaHLo6MwrXm7F0FM5e+kL2U16oE9uIwPHUl6fQBeCthiEuV/rzP3MiAB8Vfw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+	</head>
+	<body>
+	
+		<div>
+			<div style="background-color: #848C54; padding: 5px; border-radius: 5px; ">
+			<button class="w3-button  w3-round-large" style=" color: white;" ng-click="Sidebar()">☰</button>
+			<span style="margin-left: 10px; font-size: 20px; text-align: center; user-select: none; color: #DCE5BE;">STUDENT</span>
+			<a class="w3-button w3-round-large w3-right" style="color: white; background-color: #9FB164;" ng-click="logout()">LOGOUT</a>
+			</div>
+			<div class="w3-sidebar w3-bar-block w3-border-right w3-animate-left" style="display:none; background-color: #DCE5BE; border: 1px solid #ccc; border-radius: 5px;"
+			id="enrollmentSidebar">
+			<br>
+			<span style="margin-left: 10px; font-size: 22px; user-select: none; color: #848C54;"><b>STUDENT</b></span><br><br>
+			<a ng-click="student()" style="font-size: 18px; background-color: #9FB164; color: white;" class="w3-bar-item w3-button">Student</a>
+			<a ng-click="subject()" style="font-size: 18px; color: #848C54;" class="w3-bar-item w3-button">Subject</a>
+			<a ng-click="enroll()" style="font-size: 18px; color: #848C54;" class="w3-bar-item w3-button">Enrollment</a>
+			<a ng-click="report()" style="font-size: 18px; color: #848C54;" class="w3-bar-item w3-button">Report</a>
+			</div>
+		</div>
+	
+		<div class="w3-sidebar w3-bar-block w3-border-right w3-animate-left" style="display:none; background-color: rgb(211, 233, 245); border: 1px solid #ccc; border-radius: 5px;"
+			id="enrollmentSidebar">
+			<br>
+			<span style="margin-left: 10px; font-size: 22px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+						user-select: none;"><b>STUDENT</b></span><br><br>
+			<a ng-click="student()" style=" font-size: 18px; background-color: #65e3e1;" class="w3-bar-item w3-button">Student</a>
+			<a ng-click="subject()" style="font-size: 18px;" class="w3-bar-item w3-button">Subject</a>
+			<a ng-click="enroll()" style="font-size: 18px;" class="w3-bar-item w3-button">Enrollment</a>
+			<a ng-click="report()" style="font-size: 18px;" class="w3-bar-item w3-button">Report</a>
+		</div>
+		<p style="white-space: nowrap;">
+			
+		</p>
+		
+				
+		<div id="pageview" style="display: flex;">
+					<div id="my_camera" class="webcam-container" style="margin-bottom: 20px; margin-top: 20px;"></div>
+					<div id="my_result">
+						<img id="imageprev" ng-src="{{ displayedImage }}">
+					</div>					
+			<p>	</p>
+				<div id="result_name">{{ resultName }}</div><br><br>
+		</div>
+				
+				<center><button class="w3-button w3-center" ng-click="takeSnapshot()" style="background-color: rgba(233, 248, 203, 0.8); color: black;">TAKE PICTURE</button> 
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+				<button class="w3-button w3-center" style="background-color: rgba(179, 216, 105, 0.8); color: black;" ng-click="saveSnapshot()">SAVE PICTURE</button></center>
+		<!-- </div> -->
+
+		<div class="w3-half"> 
+				<div class="w3-container w3-mobile w3-tablet ">
+				<p>
+				<label><b>IDNO</b></label><br>
+				<input type="text" class=" w3-border-black w3-input" style="background-color: transparent;" placeholder="ID Number" ng-model="idno">
+				</p><p style="font-size: 1%;">&nbsp;</p>
+				<p>
+				<label><b>LASTNAME</b></label><br>
+				<input type="text" class="w3-border-black w3-input" style="background-color: transparent;" placeholder="Lastname" ng-model="lastname">
+				</p><p style="font-size: 1%;">&nbsp;</p>
+				<p>
+				<label><b>FIRSTNAME</b></label>
+				<input type="text" class=" w3-border-black w3-input" style="background-color: transparent;" placeholder="Firstname" ng-model="firstname">
+				</p><p style="font-size: 1%;">&nbsp;</p>
+				<p>
+				<label><b>COURSE</b></label><br>
+				<select ng-model="course" class="w3-input w3-border-black" style="background-color: transparent;" ng-options="option.value as option.label for option in courseOptions" ng-change="addOpt()">
+					<option style="color:grey" value="" disabled selected>Select Course</option>
+				</select>
+				</p> <p style="font-size: 1%;">&nbsp;</p>         
+				<p>
+				<label><b>LEVEL</b></label><br>
+				<select ng-model="level" class="w3-input w3-border-black" style="background-color: transparent;" ng-options="option.value as option.label for option in levelOptions">
+					<option style="color:grey" value="" disabled selected>Select Level</option>
+				</select>
+				</p><br>
+				<div class="w3-center">
+				<button ng-click="addStudent()" class="w3-center w3-button w3-round-xlarge"
+						style="background-color: rgba(233, 248, 203, 0.8); color: black;">Confirm</button>
+				<button ng-click="canceladdStudent()" class="w3-center w3-button w3-round-xlarge" 
+						style="background-color: rgba(179, 216, 105, 0.8); color: black;">Cancel</button>
+				</div>
+			</div>
+			</div>
+		</div>
+			
+
+			<div class="w3-half">
+				<div class="w3-container w3-mobile w3-tablet w3-card-4 w3-round-xxlarge">
+
+			<p style="font-size: 18px;"><b>PAGES</b>
+					<select ng-model="pageSize" ng-options="size for size in pagesizes" style="width: 65px; height: 38px;" class=" madimi-one-regular w3-center"required >
+						<option value="" disabled selected> Select</option>
+					</select>
+					<span><input class=" w3-right w3-margin-right" style="height:38px; position:relative; left: 3%; padding:1%;" accesskey="s" type="text" name="search" placeholder="Search student..." ng-model="search"></span>
+				</p>
+					
+			<div style="overflow-y: auto; max-height: 475px;">
+			<table class="table">
+			<thead class="stuth">
+					<tr>
+						<th>IMG</th>
+						<th ng-click="sortBy('idno')">IDNO<span ng-show="sortType === 'idno' && !sortReverse">&#9650;</span><span ng-show="sortType === 'idno' && sortReverse">&#9660;</span></th>
+						<th ng-click="sortBy('lastname + firstname')">NAME<span ng-show="sortType === 'lastname + firstname' && !sortReverse">&#9650;</span><span ng-show="sortType === 'lastname + firsname' && sortReverse">&#9660;</span></th>
+						<th ng-click="sortBy('course + level')">COURSE<span ng-show="sortType === 'course + level' && !sortReverse">&#9650;</span><span ng-show="sortType === 'course + level' && sortReverse">&#9660;</span></th>
+						<th>ACTION</th>
+					</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="student in studentlist | filter:search | orderBy:sortType:sortReverse | startFrom: currentPage * pageSize | limitTo: pageSize">
+				<td><img src="resources/profile/{{ student.lastname }}.jpg" alt="{{student.firstname}}{{student.lastname}}'s Face" style="width:75%; height: 75%"></td>
+				<td>{{ student.idno }}</td>" 
+				<td>{{ student.lastname | capitfirname }}, {{ student.firstname | capitfirname}}</td>
+				<td>{{ student.course | uppercase }}-{{ student.level }}</td>
+				<td>
+					<button class="w3-button w3-round-xlarge" style="background-color: rgba(195, 215, 156, 0.8); size-adjust: 30px; " ng-click="editClass(student)">&#9998;</button>
+					<button class="w3-button w3-round-xlarge " ng-click="Popdelask(student)" style="background-color: rgba(179, 216, 105, 0.8);">&times;</button>
+				</td>
+				</tr>
+			</tbody>
+			</table>
+		</div>
+
+		<p></p>
+		<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+			<button ng-disabled="currentPage==0" ng-click="currentPage = currentPage-1" style="color: white; font-size: 18px; margin: 0 5px; background-color: transparent; border: none;" type="submit">&lt;&lt;</button>
+
+		&nbsp;
+		<button  style="color: white; font-size: 18px; margin: 0 5px; background-color: transparent; border: none;" type="submit"ng-repeat="page in getSheet() track by $index"
+						ng-click="goTosheet($index)"
+						ng-class="{ 'w3-button': currentPage == $index, 'w3-button w3-round-xxlarge madimi-one-regular': currentPage != $index }">
+				{{ $index + 1 }}
+				</button>
+				<button ng-disabled="currentPage >= studentlist.length / pageSize - 1" ng-click="currentPage = currentPage + 1" style="color: white; font-size: 18px; margin: 0 5px; background-color: transparent; border: none;" type="submit" type="submit">&gt;&gt;</button>
+		</div>
+
+		<div class="w3-modal " id="editingstudent">
+				<div class="w3-container">
+					<form name="editStudentForm" ng-submit="saveStudent()" novalidate>
+						<p>
+							<label><b>IDNO</b></label>
+							<input type="text" ng-model="editStudent.idno" class="w3-input w3-border-black linetext__field" required="true">
+						</p>										
+						<p>
+							<label><b>LAST NAME</b></label>
+							<input type="text" ng-model="editStudent.lastname" class="w3-input w3-border-black linetext__field" required="true">
+						</p><p style="font-size: 1%;">&nbsp;</p>
+						<p>
+							<label><b>FIRST NAME</b></label>
+							<input type="text" ng-model="editStudent.firstname" class="w3-input w3-border-black linetext__field" required="true">
+						</p><p style="font-size: 1%;">&nbsp;</p>
+						<p>
+							<label><b>COURSE</b></label>
+							<select ng-model="editStudent.course" class="w3-input w3-border-black" style="background-color: transparent;" ng-options="option.value as option.label for option in courseOptions" ng-change="LevelCourseOpt()">
+							</select>
+						</p>
+						<p style="font-size: 1%;">&nbsp;</p>
+						<p>
+							<label><b>LEVEL</b></label>
+							<select ng-model="editStudent.level" class="w3-input w3-border-black" style="background-color: transparent;" ng-options="option.value as option.label for option in levelOptions" required></select>
+						</p><br>
+						<p>
+							<button type="submit" class="w3-button w3-round-xlarge w3-right" style="background-color: #a4c8eb;">UPDATE</button>
+							&nbsp; &nbsp; &nbsp;
+							<button ng-click="cancelEdit()" class="w3-button w3-round-xlarge w3-right" style="background-color: #a4c8eb;">CANCEL</button>
+						</p>
+					</form>
+				</div>
+		</div>
+			
+		<!-- Modal structure -->
+		<div id="PermissionDel" class="w3-modal">
+			<div class="w3-modal-content">
+			<div class="w3-container" style="height:auto;">
+				<center>
+				<p>Are you sure you want to delete the Student ID No. {{ StudeDel.idno }}?</p>
+				</center>
+				<button ng-click="deleteStudent()" class="w3-button w3-block w3-white w3-round-xxlarge w3-margin-bottom" style="font-size: 19px;">Confirm</button>
+				<button ng-click="expldelask()" class="w3-button w3-block w3-white w3-round-xxlarge" style="font-size: 19px;">Cancel</button>
+			</div>
+			</div>
+		</div>
+		
+		<!-- Button to open the modal -->
+		<div id="DelSuccess" class="w3-modal w3-center">
+			<div class="modal-content w3-round-xlarge">
+				<div class="container">
+					<center>
+					<h1 style="color: black; font-size: 30px;" class="w3-center"><b>Deleted Successfully.</b></h1></center>
+					<button ng-click="CloseDelSucce()" style="color: #000;" class="w3-center w3-button w3-round-xxlarge">X</button>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
